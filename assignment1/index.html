@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BCIT Campuses</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css" />
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+</head>
+<body>
+
+<div data-role="page">
+
+	<div data-role="header">
+		<h1>BCIT Campuses</h1>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+		<form>
+			<div class="ui-field-contain">
+			    <!--label for="select-native-1">Basic:</label-->
+			    <select name="select-native-1" id="select-native-1">
+			        <option value="1">Select BCIT Campus</option>
+			        <option value="2">Burnaby Campus</option>
+			        <option value="3">Downtown Campus</option>
+			        <option value="4">Marine Campus</option>
+			        <option value="5">Aerospace Technology Campus</option>
+			        <option value="6">Annacis Island Campus</option>
+			        <option value="7">Great Northern Way Campus</option>
+			    </select>
+			</div>
+		</form>
+
+		<div class="ui-corner-all custom-corners">
+		  	<div class="ui-bar ui-bar-a" style="padding: 0em">
+		    	<figure id="map" style="margin: 0em">
+				</figure>
+		  	</div>
+			<div class="ui-body ui-body-a">
+			    <div id="textarea">
+				</div>
+		  	</div>
+		</div>
+
+
+       
+
+
+
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>COMP-2052 Assignment 1</h4>
+		<h4>Edward Lambke</h4>
+		<h4>A00892244</h4>
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+<script>
+	$( "select" )
+	.change(function () {
+		var str = "";
+		$( "select option:selected" ).each(function() {
+	});
+	if($( this ).val()==1) {
+		$("#textarea").html('');
+		$("figure").html('<img style="height:100%;width:100%" src="images/logo.jpeg" />')		
+	}
+	if($( this ).val()==2) {
+		$("#textarea").html('<a href="http://www.bcit.ca/about/burnaby.shtml">Burnaby Campus</a><p>The BCIT Burnaby Campus is located just off the Trans-Canada Highway at the corner of Willingdon Avenue and Canada Way</p><p>3700 Willingdon Avenue <br />Burnaby, BC V5G 3H2</p>');
+		$("figure").html('<img style="height:100%;width:100%" src="images/map2.png" />')		
+	}
+	if($( this ).val()==3) {		
+		$("#textarea").html('<a href="http://www.bcit.ca/about/downtown.shtml">Downtown Campus</a><p>The BCIT Downtown Campus is in the heart of Vancouver, near the Granville Skytrain Station.</p><p>555 Seymour Street<br />Vancouver, British Columbia<br />V6B 3H6 , Canada</p>');
+		$("figure").html('<img style="height:100%;width:100%" src="images/map3.png" />')		
+	}
+	if($( this ).val()==4) {		
+		$("#textarea").html('<a href="http://www.bcit.ca/about/marine.shtml">Marine Campus</a><p>The BCIT Marine Campus is located in North Vancouver near the Lonsdale Quay and SeaBus terminal.</p><p>265 West Esplanade<br />North Vancouver, British Columbia<br />V7M 1A5, Canada</p>');
+		$("figure").html('<img style="height:100%;width:100%" src="images/map4.png" />')		
+	}
+	if($( this ).val()==5) {		
+		$("#textarea").html('<a href="http://www.bcit.ca/about/aerospace.shtml">Aerospace Technology Campus</a><p>The Aerospace Technology Campus is in Richmond near the South Terminal for the Vancouver International Airport.</p><p>3800 Cessna Drive<br />Richmond, BC<br />V7B 0A1, Canada</p>');
+		$("figure").html('<img style="height:100%;width:100%" src="images/map5.png" />')		
+	}	
+	if($( this ).val()==6) {		
+		$("#textarea").html('<a href="http://www.bcit.ca/about/annacis.shtml">Annacis Island Campus</a><p>The Annacis Island Campus is located in Delta, at</p><p>1608 Cliveden Avenue<br />Delta, British Columbia<br />Canada, V3M 6M2</p>');
+		$("figure").html('<img style="height:100%;width:100%" src="images/map6.png" />')		
+	}
+	if($( this ).val()==7) {		
+		$("#textarea").html('<a href="http://www.bcit.ca/about/gnwc.shtml">Great Northern Way Campus</a><p>The Great Northern Way Campus is located on Great Northern Way between Main St and Clark Drive.</p><p>555 Great Northern Way<br />Vancouver, British Columbia<br />Canada, V5T 1E2</p>');
+		$("figure").html('<img style="height:100%;width:100%" src="images/map7.png" />')		
+	}
+
+	})
+	.change();
+</script>
+
+</body>
+</html>
