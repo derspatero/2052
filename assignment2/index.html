@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BCIT Campuses</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css" />
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+</head>
+<body>
+
+<div data-role="page">
+
+	<div data-role="header">
+		<h1>Assignment 2</h1>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+
+		<form action="store.php" method="post" data-ajax="false">
+			<div class="ui-field-contain">
+			    <!--label for="select-native-1">Basic:</label-->
+			    <select name="select-native-1" id="select-native-1">
+			        <option value="0">Select your favourite campus</option>		
+			        <option value="Burnaby">Burnaby Campus</option>
+			        <option value="Downtown">Downtown Campus</option>
+			        <option value="Marine">Marine Campus</option>
+<!-- 			        <option value="Aerospace">Aerospace Technology Campus</option>
+			        <option value="AnnacisIsland">Annacis Island Campus</option>
+			        <option value="GreatNorthernWay">Great Northern Way Campus</option>
+	 -->		    </select>
+			</div>
+			<input value="Submit" type="submit" />
+		</form>
+		
+		<div class="ui-corner-all custom-corners">
+		  	<div class="ui-bar ui-bar-a" style="padding: 0em">
+		    	<div id="chart">
+				</div>
+		  	</div>
+
+		</div>
+
+
+
+
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>COMP-2052 Assignment 2</h4>
+		<h4>Edward Lambke</h4>
+		<h4>A00892244</h4>
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+<script>
+	$("#chart").html('<object type="type/html" data="chart.php"></object>');
+</script>
+
+</body>
+</html>
