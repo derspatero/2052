@@ -34,6 +34,18 @@ fclose($file);                            // close file handle
 
 	<canvas id="piechart1" width="200" height="200"></canvas>
 
+
+	<div id="chart-key">
+	   	<ul>
+   			<li style="background-color:red">Burnaby</li>
+   			<li style="background-color:yellow">Downtown</li>
+   			<li style="background-color:green">Marine</li>
+   			<li style="background-color:blue">Aerospace</li>
+   			<li style="background-color:purple">AnnacisIsland</li>
+   			<li style="background-color:orange">GreatNorthernWay</li>
+   		</ul>
+   	</div>
+
 	<script>
 		var campuses = {
 			Burnaby:0, 
@@ -46,24 +58,29 @@ fclose($file);                            // close file handle
 		var selected = [<?php echo '"'.implode('","', $arr).'"' ?>];
 		for (i=0; i<selected.length; i++){
 			$('#shit').append(selected[i] + "<br />");
-			if(selected[i] == "Burnaby"){
-				campuses.Burnaby++
-			} 
-			if(selected[i] == "Downtown"){
-				campuses.Downtown++
-			} 
-			if(selected[i] == "Marine"){
-				campuses.Marine++
-			} 
+			campuses[selected[i]]++;
+
 		}
 
 		var burnabytotal = 360 / selected.length * campuses.Burnaby;
 		var downtowntotal = 360 / selected.length * campuses.Downtown;
 		var marinetotal = 360 / selected.length * campuses.Marine;
+		var Aerospace = 360 / selected.length * campuses.Aerospace;
+		var AnnacisIsland = 360 / selected.length * campuses.AnnacisIsland;
+		var GreatNorthernWay = 360 / selected.length * campuses.GreatNorthernWay;
 
 
-	   piechart("piechart1", ["red", "yellow", "green"], [burnabytotal, downtowntotal, marinetotal]);
+	   piechart("piechart1", ["red", "yellow", "green", "blue", "purple", "orange"], [burnabytotal, downtowntotal, marinetotal, Aerospace, AnnacisIsland, GreatNorthernWay]);
+	
+	   
+
+
+	  
+
+
 	</script>
+
+
 
 </body>
 </html>
