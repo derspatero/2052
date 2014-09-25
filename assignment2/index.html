@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html>
 <head>
 	<title>BCIT Campuses</title>
@@ -35,11 +35,7 @@
 			<input value="Submit" type="submit" />
 		</form>
 		
-		<div class="ui-corner-all custom-corners">
-		  	<div class="ui-bar ui-bar-a" style="padding: 0em">
-		    	<div id="chart">
-				</div>
-		  	</div>
+		<div id="chart" style="width:100%;height:250px;overflow:hidden" >
 
 		</div>
 
@@ -56,8 +52,12 @@
 </div><!-- /page -->
 
 <script>
-	$("#chart").html('<object type="type/html" data="chart.php"></object>');
+	$("#chart").html('<object type="type/html" data="chart.php" style="width:100%;height:250px;overflow:hidden"></object>');
 </script>
+
+
+
+
 
 </body>
 </html>

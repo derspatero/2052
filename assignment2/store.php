@@ -13,11 +13,16 @@ if($file_handle) {                       // if file is there
       json_encode($_POST).PHP_EOL);      // json-encoded POST data (terminate with end of line)
    fclose($file_handle);                 // close file stream
    // echo 'Data submitted successfully.';  // inform of success
-	header('Location:test.php');         // or show another html
+        // or show another html
 }
 else {
    echo 'Error opening data file.';      // inform of failure
 }
+
+?>
+
+<?php
+	echo "<script>window.location = './'</script>";        // or show another html
 ?>
 </body>
 </html>

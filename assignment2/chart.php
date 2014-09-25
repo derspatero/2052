@@ -5,8 +5,12 @@
 	<title></title>
 	<script src="piechart.js"></script>
 	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
-
+	<script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+	<style>
+		.ui-loader ui-corner-all ui-body-a ui-loader-default {
+			display: none;
+		}
+	</style>
 </head>
 <body>
 	<?php
@@ -32,11 +36,13 @@ fclose($file);                            // close file handle
 ?>
 
 
-	<canvas id="piechart1" width="200" height="200"></canvas>
 
 
-	<div id="chart-key">
-	   	<ul>
+
+
+	<canvas id="piechart1" width="200" height="200" style="float:left"></canvas>
+    <div id="chart-key" style="float:left">
+	   	<ul style="list-style-type:none;width:10em;">
    			<li style="background-color:red">Burnaby</li>
    			<li style="background-color:yellow">Downtown</li>
    			<li style="background-color:green">Marine</li>
@@ -57,7 +63,6 @@ fclose($file);                            // close file handle
 		}
 		var selected = [<?php echo '"'.implode('","', $arr).'"' ?>];
 		for (i=0; i<selected.length; i++){
-			$('#shit').append(selected[i] + "<br />");
 			campuses[selected[i]]++;
 
 		}
@@ -71,11 +76,7 @@ fclose($file);                            // close file handle
 
 
 	   piechart("piechart1", ["red", "yellow", "green", "blue", "purple", "orange"], [burnabytotal, downtowntotal, marinetotal, Aerospace, AnnacisIsland, GreatNorthernWay]);
-	
-	   
 
-
-	  
 
 
 	</script>
