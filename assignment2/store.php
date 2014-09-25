@@ -13,7 +13,7 @@ if($file_handle) {                       // if file is there
       json_encode($_POST).PHP_EOL);      // json-encoded POST data (terminate with end of line)
    fclose($file_handle);                 // close file stream
    // echo 'Data submitted successfully.';  // inform of success
-        // or show another html
+   // header('Location:done.html');         // or show another html
 }
 else {
    echo 'Error opening data file.';      // inform of failure
@@ -22,7 +22,7 @@ else {
 ?>
 
 <?php
-	echo "<script>window.location = './'</script>";        // or show another html
+	echo "<script>window.location = './'</script>";        // php header redirect doesn't work
 ?>
 </body>
 </html>

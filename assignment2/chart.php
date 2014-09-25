@@ -5,12 +5,7 @@
 	<title></title>
 	<script src="piechart.js"></script>
 	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
-	<style>
-		.ui-loader ui-corner-all ui-body-a ui-loader-default {
-			display: none;
-		}
-	</style>
+
 </head>
 <body>
 	<?php
@@ -34,10 +29,6 @@ while(!feof($file))                       // while eof not reached
 // print_r($arr);
 fclose($file);                            // close file handle
 ?>
-
-
-
-
 
 
 	<canvas id="piechart1" width="200" height="200" style="float:left"></canvas>
@@ -81,7 +72,9 @@ fclose($file);                            // close file handle
 
 	</script>
 
-
+	<script>
+		$(".ui-loader.ui-corner-all.ui-body-a.ui-loader-default").html("");
+	</script>
 
 </body>
 </html>
