@@ -31,7 +31,7 @@ fclose($file);                            // close file handle
 ?>
 
 
-	<canvas id="piechart1" width="200" height="200" style="float:left"></canvas>
+	<canvas id="piechart1" width="150" height="200" style="float:left"></canvas>
     <div id="chart-key" style="float:left">
 	   	<ul style="list-style-type:none;width:10em;">
    			<li style="background-color:red">Burnaby</li>
@@ -72,9 +72,6 @@ fclose($file);                            // close file handle
 
 	</script>
 
-	<script>
-		$(".ui-loader.ui-corner-all.ui-body-a.ui-loader-default").html("");
-	</script>
 
 </body>
 </html>
