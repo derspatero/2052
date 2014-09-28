@@ -15,7 +15,10 @@ $file = fopen('data.json', "r")           // open file
 while(!feof($file))                       // while eof not reached
 {
     $line = fgets($file);                 // get one line
+    echo 'line:'.$line.'<br />';
     $data = json_decode($line, TRUE);     // json-decode it, $assoc
+        echo 'data:'.$data.'<--- 	<br />';
+        	
     if (is_array($data)) {                // if decoded data is an array
         foreach ($data as $key => $value) // iterate through assoc array
         {

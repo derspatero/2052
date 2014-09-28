@@ -1,0 +1,10 @@
+/*
+Theme name: A00892244 - Edward Lambke
+Template: 	responsive
+*/
+
+@import url("../responsive/style.css");
+
+h1 {
+	color:#f00;
+}
