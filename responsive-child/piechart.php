@@ -11,10 +11,10 @@ if (!defined('ABSPATH')) exit;
 ?> 
 
 <div id="content" class="grid col-620">
-<h1>Edward Lambke A00892244</h1>
-<h2>Assigment 3</h2>
+<h4>Edward Lambke A00892244</h4>
+<h4>Assigment 3</h4>
 
-<h4>Select your favourite campus</h4>	
+<h2>Select your favourite campus</h2>	
 <form  method="POST" id="dataform">
     <select name="campuses" id="campuses">	
         <option value="Burnaby">Burnaby Campus</option>

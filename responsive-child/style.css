@@ -5,6 +5,18 @@ Template: 	responsive
 
 @import url("../responsive/style.css");
 
+h1, h2{
+	font-size: 1.3em;
+}
+
+h3, h4{
+	font-size: 1em;
+}
+
 .menu, .site-name, .site-description{
+	display:none;
+}
+
+#main-nav, #header{
 	display:none;
 }
