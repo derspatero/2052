@@ -5,6 +5,6 @@ Template: 	responsive
 
 @import url("../responsive/style.css");
 
-h1 {
-	color:#f00;
+.menu, .site-name, .site-description{
+	display:none;
 }

@@ -6,10 +6,13 @@ if (!defined('ABSPATH')) exit;
  * Template Name: A00892244 assignment3
  */
 ?>
-<?php get_header(); ?>
+<?php 
+	get_header(); 
+?> 
 
 <div id="content" class="grid col-620">
-<h1>Piechart</h1>
+<h1>Edward Lambke A00892244</h1>
+<h2>Assigment 3</h2>
 
 <h4>Select your favourite campus</h4>	
 <form  method="POST" id="dataform">
@@ -24,40 +27,6 @@ if (!defined('ABSPATH')) exit;
 	<input value="Submit" type="submit" />
 </form>
 
-<?php
-$arr = array();
-$sql = "SELECT * FROM wp_options WHERE option_name LIKE 'A00892244_assignment3%' ORDER BY option_name";
-$options = $wpdb->get_results($sql);
-foreach ($options as $option) {
-
-		    // echo '<p><b>name'.$option->option_name.'</b> = value'
-      //    .esc_attr($option->option_value).'</p>'.PHP_EOL;
-
-         $line = esc_attr($option->option_value);	
-
-         echo 'line:'.$line.'<br />';
-		
-        // array_push($arr, esc_attr($option->option_value));
-
-    $data = json_decode($line, TRUE);     // json-decode it, $assoc
-    echo 'data:'.$data.'<--- 	<br />';
-
-    if (is_array($data)) {                // if decoded data is an array
-        foreach ($data as $key => $value) // iterate through assoc array
-        {
-            echo 'key:'.$key.'='.$value.' ';
-            array_push($arr, $value);      // show key=value pairs
-         
-        }
-    }
-
-    print_r($arr);
-
-    // echo '$arr = '.implode("",$arr).'<br />';
-}
-?>
-
-
 
 	<canvas id="piechart1" width="150" height="200" style="float:left"></canvas>
     <div id="chart-key" style="float:left">
@@ -71,7 +40,56 @@ foreach ($options as $option) {
    		</ul>
    	</div>
 
-   	<div id="test">js array</div>
+</div>
+
+<?php get_footer(); ?>
+
+
+<?php if(isset($_POST['campuses']) && !empty($_POST['campuses'])): ?>
+   <?php add_option('A00892244_assignment3_'.date("ymd-His"), json_encode($_POST)); ?>
+   <script>
+      alert("Thanks for submitting your data!");
+   </script>
+<?php
+   endif;
+   header("Location: ".TEMPLATEPATH.'/store.php');
+?>
+
+
+<?php
+$arr = array();
+$sql = "SELECT * FROM wp_options WHERE option_name LIKE 'A00892244_assignment3%' ORDER BY option_name";
+$options = $wpdb->get_results($sql);
+foreach ($options as $option) {
+
+	// echo '<p>$option->option_value: '.$option->option_value.'<p>';
+
+    $line = get_option($option->option_name);	
+
+    // echo 'line:'.$line.'endofstring<br />';
+		
+    $data = json_decode($line, TRUE);     // json-decode it, $assoc
+
+    // echo 'data:'.$data.'endofstring 	<br />';
+
+    if (is_array($data)) {                // if decoded data is an array
+    	// echo 'is array';
+        foreach ($data as $key => $value) // iterate through assoc array
+        {
+            // echo 'key:'.$key.'='.$value.' ';
+            array_push($arr, $value);      // show key=value pairs
+         
+        }
+    }
+    else{
+    	// echo 'is not an array';
+    }
+}
+?>
+
+
+
+   	<!-- <div id="test">js array</div> -->
 
 
 	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -90,7 +108,7 @@ foreach ($options as $option) {
 		var selected = [<?php echo '"'.implode('","', $arr).'"' ?>];
 		for (i=0; i<selected.length; i++){
 			campuses[selected[i]]++;
-			$("#test").append(selected[i]);
+			// $("#test").append(selected[i]);
 
 		}
 
@@ -101,7 +119,7 @@ foreach ($options as $option) {
 		var AnnacisIsland = 360 / selected.length * campuses.AnnacisIsland;
 		var GreatNorthernWay = 360 / selected.length * campuses.GreatNorthernWay;
 
-		alert("burnabytotal:" + campuses.Burnaby);
+		// alert("burnabytotal:" + campuses.Burnaby);
 
 	   piechart("piechart1", ["red", "yellow", "green", "blue", "purple", "orange"], [burnabytotal, downtowntotal, marinetotal, Aerospace, AnnacisIsland, GreatNorthernWay]);
 
@@ -110,20 +128,6 @@ foreach ($options as $option) {
 	</script>
 
 
-
-</div>
-
-<?php get_footer(); ?>
-
-
-<?php if(isset($_POST['campuses']) && !empty($_POST['campuses'])): ?>
-   <?php add_option('A00892244_assignment3_'.date("ymd-His"), json_encode($_POST)); ?>
-   <script>
-      alert("Thanks for submitting your data!");
-   </script>
-<?php
-   endif;
-   header("Location: ".TEMPLATEPATH.'/store.php');
 
 
 
