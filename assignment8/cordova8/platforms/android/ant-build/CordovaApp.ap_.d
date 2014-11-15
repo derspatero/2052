@@ -32,7 +32,6 @@
 /Users/elambke/Documents/COMP2052/comp2052assignments/assignment8/cordova8/platforms/android/assets/www/cordova.js \
 /Users/elambke/Documents/COMP2052/comp2052assignments/assignment8/cordova8/platforms/android/assets/www/cordova_plugins.js \
 /Users/elambke/Documents/COMP2052/comp2052assignments/assignment8/cordova8/platforms/android/assets/www/css \
-/Users/elambke/Documents/COMP2052/comp2052assignments/assignment8/cordova8/platforms/android/assets/www/Image0018.jpg \
 /Users/elambke/Documents/COMP2052/comp2052assignments/assignment8/cordova8/platforms/android/assets/www/img \
 /Users/elambke/Documents/COMP2052/comp2052assignments/assignment8/cordova8/platforms/android/assets/www/index.html \
 /Users/elambke/Documents/COMP2052/comp2052assignments/assignment8/cordova8/platforms/android/assets/www/js \

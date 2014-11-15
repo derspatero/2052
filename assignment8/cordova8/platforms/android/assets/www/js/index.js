@@ -50,25 +50,6 @@ var app = {
 
 app.initialize();
 
-// var pictureSource; // picture source
-// var destinationType;
-
-// function onDeviceReady() {
-//  pictureSource=navigator.camera.PictureSourceType;
-//  destinationType=navigator.camera.DestinationType;
-//  }
-
-// function getPicture() {
-//    navigator.camera.getPicture(onCameraSuccess, onFail, { quality: 50,
-//       destinationType: Camera.DestinationType.DATA_URL
-//    });
-// }
-
-// function onCameraSuccess(imageData) {
-//     var image = document.getElementById('myImage');
-//     image.src = "data:image/jpeg;base64," + imageData;
-// }
-
 function getPicture() {
    navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
       destinationType: Camera.DestinationType.FILE_URI
@@ -89,21 +70,3 @@ function getPhoto() {
     destinationType: Camera.DestinationType.FILE_URI,
     sourceType: Camera.PictureSourceType.PHOTOLIBRARY});
 }
-
-// function onGallerySuccess(imageUri) {
-//     var image = document.getElementById('myImage');
-//     image.src = imageUri;
-// }
-
-
-// function getPicture() {
-//    navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
-//       destinationType: Camera.DestinationType.DATA_URL
-//    });
-//    AndroidToast.showShortToast('picture taken');
-// }
-
-// function onSuccess(imageData) {
-//     var image = document.getElementById('myImage');
-//     image.src = "data:image/jpeg;base64," + imageData;
-//     AndroidToast.showShortToast('picture displayed');
