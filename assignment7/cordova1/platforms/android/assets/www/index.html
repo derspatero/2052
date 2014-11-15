@@ -1,0 +1,142 @@
+	<!DOCTYPE html>
+<html>
+<head>
+	<title>Pie Chart Manager</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+
+<div data-role="page">
+
+	<div data-role="header">
+		<h1>COMP-2052 Assignment 7 </h1>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+
+<form>
+<fieldset data-role="controlgroup" data-type="horizontal">
+    <label for="select-native-11">Colour 1</label>
+    <select name="select-native-11" id="colour1">
+        <option value="black">black</option>
+        <option value="gray">gray</option>
+        <option value="white">white</option>
+    </select>
+    <label for="select-native-12">Colour 2</label>
+    <select name="select-native-12" id="colour2">
+        <option value="red">red</option>
+        <option value="orange">orange</option>
+        <option value="pink">pink</option>
+    </select>
+    <label for="select-native-13">Colour 3</label>
+    <select name="select-native-13" id="colour3">
+        <option value="green">green</option>
+        <option value="blue">blue</option>
+        <option value="purple">purple</option>
+    </select>
+</fieldset>
+</form>
+
+<form>
+<fieldset data-role="controlgroup" data-type="horizontal">
+    <label for="select-native-11">Angle 1</label>
+    <select name="select-native-11" id="angle1">
+        <option value="60">60</option>
+        <option value="120">120</option>
+        <option value="180">180</option>
+    </select>
+    <label for="select-native-12">Angle 2</label>
+    <select name="select-native-12" id="angle2">
+        <option value="60">60</option>
+        <option value="120">120</option>
+        <option value="180">180</option>
+    </select>
+    <label for="select-native-13">Angle 3</label>
+    <select name="select-native-13" id="angle3">
+        <option value="60">60</option>
+        <option value="120">120</option>
+        <option value="180">180</option>
+    </select>
+</fieldset>
+</form>
+
+<form>
+    <input id="button" value="Show Pie Chart" type="button">
+</form>
+
+	<canvas id="piechart1" width="200" height="200" style=""></canvas>
+
+
+
+
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>Edward Lambke A00892244</h4>
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+	<script>
+
+		$("#button").click(function(event) {
+			var colour1 = $("#colour1").val();
+    		var colour2= $("#colour2").val();
+    		var colour3 = $("#colour3").val();
+    		var angle1 = $("#angle1").val();
+    		var angle2= $("#angle2").val();
+    		var angle3 = $("#angle3").val();
+    		var angle4 = 0;
+
+    		var totalangle = parseInt(angle1) + parseInt(angle2) + parseInt(angle3);
+
+    		if(totalangle >= 360) {
+    			angle3 = 360 - angle1 - angle2;
+    		}
+    		else{
+    			angle4 = 360 - angle1 - angle2 - angle3;
+    		}
+
+    		piechart("piechart1", [colour1, colour2, colour3, "white"], [angle1, angle2, angle3, angle4]);
+
+		});
+
+
+
+		function piechart(chartId, colours, angles) {
+
+			var canvas  = document.getElementById(chartId);
+			var context = canvas.getContext("2d");
+			var x = Math.floor(canvas.width  / 2);
+			var y = Math.floor(canvas.height / 2);
+			var startAngle = 0.0;
+
+			for (var i = 0; i < colours.length; i++) {
+				drawSegment(colours[i], angles[i]);
+			}
+
+			function drawSegment(colour, angle) {
+				var endAngle = startAngle + parseFloat(angle) * Math.PI / 180;
+				context.beginPath();
+				context.moveTo(x, y);
+				context.arc(x, y, (x > y ? y : x), startAngle, endAngle, false);
+				context.fillStyle = colour;
+				context.fill();
+				context.closePath();
+				startAngle = endAngle;
+			}
+
+		}
+
+	</script>
+
+
+
+
+
+</body>
+</html>
