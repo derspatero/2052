@@ -35,7 +35,7 @@ function writeFile(fileName, textToWrite) {
             fileEntry.createWriter(
                 function (writer) {
                     writer.onwriteend = function(evt) {
-                        alert("contents of file " + _pathToPackage + '/' +  fileName + ": '" + textToWrite + "'");
+                        AndroidToast.showShortToast("contents of file " + _pathToPackage + '/' +  fileName + ": '" + textToWrite + "'");
                     };
                     writer.write(textToWrite);
                 }, 

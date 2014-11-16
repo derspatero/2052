@@ -6,6 +6,7 @@
 /Users/elambke/Documents/COMP2052/comp2052assignments/assignment9/edwardlambke/platforms/android/ant-build/classes/ca/comp2052/a00892244/R$string.class \
 /Users/elambke/Documents/COMP2052/comp2052assignments/assignment9/edwardlambke/platforms/android/ant-build/classes/ca/comp2052/a00892244/R$xml.class \
 /Users/elambke/Documents/COMP2052/comp2052assignments/assignment9/edwardlambke/platforms/android/ant-build/classes/ca/comp2052/a00892244/R.class \
+/Users/elambke/Documents/COMP2052/comp2052assignments/assignment9/edwardlambke/platforms/android/ant-build/classes/ca/comp2052/a00892244/ToastWidget.class \
 /Users/elambke/Documents/COMP2052/comp2052assignments/assignment9/edwardlambke/platforms/android/ant-build/classes/org/apache/cordova/file/ContentFilesystem.class \
 /Users/elambke/Documents/COMP2052/comp2052assignments/assignment9/edwardlambke/platforms/android/ant-build/classes/org/apache/cordova/file/DirectoryManager.class \
 /Users/elambke/Documents/COMP2052/comp2052assignments/assignment9/edwardlambke/platforms/android/ant-build/classes/org/apache/cordova/file/EncodingException.class \
