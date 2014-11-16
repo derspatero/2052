@@ -1,3 +1,0 @@
-# view AndroidManifest.xml #generated:6
--keep class ca.comp2025.assignment9.CordovaApp { <init>(...); }
-
