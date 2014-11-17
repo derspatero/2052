@@ -47,15 +47,14 @@
 
                     <label for="text-basic">Text input:</label>
                     <input id="read_file_name_input" type="text" name="text-basic" id="text-basic" value="">
-                    <!-- <button onclick="getFile();" class="ui-btn ui-shadow">Read From File</button> -->
-
 
                     <a onclick="openfile();" href="#my_file" data-rel="popup" class="ui-btn ui-shadow" data-transition="pop">Read From File</a>
                     <div data-role="popup" id="my_file"></div>
 
-<!--                     <div class="ui-shadow">
-                        <div id="my_file"></div>
-                    </div> -->
+                    <button id="write_to_file_btn" class="ui-btn ui-shadow" onclick="showdirectory('#file_directory')">Show Directory</button>
+
+                    <div id="file_directory"></div>
+
                 <!-- </div> -->
             </div><!-- /content -->
 
