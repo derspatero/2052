@@ -54,6 +54,7 @@
                     <button id="write_to_file_btn" class="ui-btn ui-shadow" onclick="showdirectory('#file_directory')">Show Directory</button>
 
                     <div id="file_directory"></div>
+                    <div id="opened_file"></div>
 
                 <!-- </div> -->
             </div><!-- /content -->
@@ -68,7 +69,7 @@
 
             function openfile(){
                 var read_file_name = $("#read_file_name_input").val();
-                getFile(read_file_name);
+                getFile(read_file_name, "#my_file");
             }
 
             function savefile(){

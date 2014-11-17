@@ -50,7 +50,7 @@ function fail(error) {
     alert(error);
 }
 
-function getFile(file_name) {
+function getFile(file_name, displayId) {
     _fileSystemRoot.getFile(
         _pathToPackage + '/' + file_name, 
         null, 
@@ -60,7 +60,7 @@ function getFile(file_name) {
                     var reader = new FileReader();
                     reader.onloadend = function(evt) {
                         console.log("Read as text");
-                        $("#my_file").html("File Name: " + _pathToPackage + '/' + file_name + "<br /><br />" + evt.target.result);
+                        $(displayId).html("File Name: " + _pathToPackage + '/' + file_name + "<br /><br />" + evt.target.result);
                     };
                     reader.readAsText(file);
                 }, 
@@ -81,8 +81,8 @@ function getFile2(file_name) {
                 function (file) {
                     var reader = new FileReader();
                     reader.onloadend = function(evt) {
-                        console.log("Read as text");
-                        $("#my_file").html("File Name: " + file_name + "<br /><br />" + evt.target.result);
+                        console.log("Read as text:" + evt.target.result);
+                        AndroidToast.showShortToast(evt.target.result);
                     };
                     reader.readAsText(file);
                 }, 
@@ -103,10 +103,11 @@ function showdirectory(displayId) {
             for (var i=0; i<entries.length; i++) {
                 console.log(entries[i].name);
                 if (entries[i].isDirectory) {
-                    $(displayId).append('<a>' + entries[i].name + '</a><br />');
+                    $(displayId).append(entries[i].name + '<br />');
                 }
                 else if (entries[i].isFile) {
-                    $(displayId).append('<a onclick="getFile2(' + entries[i].name + ')">' + entries[i].name + '</a><br />');
+                    var fn = "'" + entries[i].name + "'";
+                    $(displayId).append('<a onclick="getFile2(' + fn + ')">' + fn + '</a><br />');
                 }    
             }
         },
