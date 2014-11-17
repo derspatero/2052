@@ -1,6 +1,7 @@
 
 var _fileSystemRoot;
-var _pathToPackage = "Android/data/ca.comp2052.a00892244";
+var _pathToPackage = "Android/data/ca.comp2052.a00892244/";
+// var _pathToPackage = "Android/";
 var _packageDirectory;
 
 // Wait for device API libraries to load
@@ -47,12 +48,12 @@ function writeFile(fileName, textToWrite) {
 
 function fail(error) {
     console.log(error.code);
-    alert(error);
+    alert("fail!: " + error);
 }
 
 function getFile(file_name, displayId) {
     _fileSystemRoot.getFile(
-        _pathToPackage + '/' + file_name, 
+        _pathToPackage + file_name, 
         null, 
         function (fileEntry) {
             fileEntry.file(
@@ -60,7 +61,7 @@ function getFile(file_name, displayId) {
                     var reader = new FileReader();
                     reader.onloadend = function(evt) {
                         console.log("Read as text");
-                        $(displayId).html("File Name: " + _pathToPackage + '/' + file_name + "<br /><br />" + evt.target.result);
+                        $(displayId).html("File Name: " + _pathToPackage + file_name + "<br /><br />" + evt.target.result);
                     };
                     reader.readAsText(file);
                 }, 
@@ -72,7 +73,7 @@ function getFile(file_name, displayId) {
 }
 
 function getFile2(file_name) {
-    alert(file_name);
+    // alert(file_name);
     _fileSystemRoot.getFile(
         file_name, 
         null, 
@@ -82,7 +83,7 @@ function getFile2(file_name) {
                     var reader = new FileReader();
                     reader.onloadend = function(evt) {
                         console.log("Read as text:" + evt.target.result);
-                        AndroidToast.showShortToast(evt.target.result);
+                        alert(evt.target.result);
                     };
                     reader.readAsText(file);
                 }, 
@@ -96,25 +97,70 @@ function getFile2(file_name) {
 // Get a list of all the entries in the directory
 function showdirectory(displayId) {
     // Get a directory reader
-    var directoryReader = _fileSystemRoot.createReader();
-    
-    directoryReader.readEntries(function (entries) {
-            $(displayId).append("<em>sdcard0 Contents:</em><br />");
-            for (var i=0; i<entries.length; i++) {
-                console.log(entries[i].name);
-                if (entries[i].isDirectory) {
-                    $(displayId).append(entries[i].name + '<br />');
-                }
-                else if (entries[i].isFile) {
-                    var fn = "'" + entries[i].name + "'";
-                    $(displayId).append('<a onclick="getFile2(' + fn + ')">' + fn + '</a><br />');
-                }    
-            }
+
+    _fileSystemRoot.getDirectory(_pathToPackage, {create: false, exclusive: false}, 
+        function (dirEntry) {
+            // Get a directory reader
+            var directoryReader = dirEntry.createReader();
+            // alert(_pathToPackage);
+
+            // Get a list of all the entries in the directory
+            directoryReader.readEntries(function (){
+                directoryReader.readEntries(
+                    function (entries) {
+                        $(displayId).html("<em>" + _pathToPackage + " Contents:</em><br />");
+                        for (var i=0; i<entries.length; i++) {
+                            console.log(entries[i].name);
+                            if (entries[i].isDirectory) {
+                                $(displayId).append(entries[i].name + '<br />');
+                            }
+                            else if (entries[i].isFile) {
+                                var fn = "'" + entries[i].name + "'";
+                                $(displayId).append('<a onclick="getFile2(' + fn + ')">' + fn + '</a><br />');
+                            }    
+                        }
+                    },
+                    function (error) {
+                        alert("Failed to list directory contents: " + error.code);
+                    }
+                );
+            },fail);
         },
-        function (error) {
-            alert("Failed to list directory contents: " + error.code);
-        }
-    );
+        fail
+    );           
+    
+
 }
 
+// window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, fail);
+
+// function onFileSystemSuccess(fileSystem) {
+
+// var tmpPath = _pathToPackage;
+
+// fileSystem.root.getDirectory(tmpPath, {create: false, exclusive: false}, getDirSuccess, fail);           
+// }
+
+
+// function getDirSuccess(dirEntry) {
+
+// // Get a directory reader
+// var directoryReader = dirEntry.createReader();
+
+// // Get a list of all the entries in the directory
+// directoryReader.readEntries(function (entries) {
+//                         $(displayId).html("<em>" + _pathToPackage + " Contents:</em><br />");
+//                         for (var i=0; i<entries.length; i++) {
+//                             console.log(entries[i].name);
+//                             if (entries[i].isDirectory) {
+//                                 $(displayId).append(entries[i].name + '<br />');
+//                             }
+//                             else if (entries[i].isFile) {
+//                                 var fn = "'" + entries[i].name + "'";
+//                                 var displayId = "#file_directory";
+//                                 $(displayId).append('<a onclick="getFile2(' + fn + ')">' + fn + '</a><br />');
+//                             }    
+//                         }
+//                     },fail);
+// }
 
