@@ -39,22 +39,23 @@
 
             <div role="main" class="ui-content">
                 <!-- <div class="app"> -->
-                    <label for="text-basic">File name:</label>
+                    <label for="text-basic">File name to write to:</label>
                     <input id="file_name_input" type="text" name="text-basic" id="text-basic" value="">
                     <label for="text-basic">Text to write to file:</label>
                     <input id="file_text_input" type="text" name="text-basic" id="text-basic" value="">
                     <button id="write_to_file_btn" class="ui-btn ui-shadow" onclick="savefile()">Write To File</button>
 
-                    <label for="text-basic">Text input:</label>
+                    <label for="text-basic">File name to read from:</label>
                     <input id="read_file_name_input" type="text" name="text-basic" id="text-basic" value="">
 
-                    <a onclick="openfile();" href="#my_file" data-rel="popup" class="ui-btn ui-shadow" data-transition="pop">Read From File</a>
-                    <div data-role="popup" id="my_file"></div>
+                    <button onclick="openfile();" class="ui-btn ui-shadow">Read From File</button>
 
-                    <button id="write_to_file_btn" class="ui-btn ui-shadow" onclick="showdirectory('#file_directory')">Show Directory</button>
+                    <div id="opened_file"></div>    
+
+                    <button id="write_to_file_btn" class="ui-btn ui-shadow" onclick="showdirectory('#file_directory','#opened_file')">Show Directory Contents</button>
 
                     <div id="file_directory"></div>
-                    <div id="opened_file"></div>
+
 
                 <!-- </div> -->
             </div><!-- /content -->
@@ -69,7 +70,8 @@
 
             function openfile(){
                 var read_file_name = $("#read_file_name_input").val();
-                getFile(read_file_name, "#my_file");
+                // openFileForDefaultLocation(read_file_name, "#my_file");
+                openFileFromDefaultLocation(read_file_name, "#opened_file");
             }
 
             function savefile(){

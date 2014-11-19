@@ -1,8 +1,7 @@
 
 var _fileSystemRoot;
 var _pathToPackage = "Android/data/ca.comp2052.a00892244/";
-// var _pathToPackage = "Android/";
-var _packageDirectory;
+
 
 // Wait for device API libraries to load
 //
@@ -51,29 +50,14 @@ function fail(error) {
     alert("fail!: " + error);
 }
 
-function getFile(file_name, displayId) {
-    _fileSystemRoot.getFile(
-        _pathToPackage + file_name, 
-        null, 
-        function (fileEntry) {
-            fileEntry.file(
-                function (file) {
-                    var reader = new FileReader();
-                    reader.onloadend = function(evt) {
-                        console.log("Read as text");
-                        $(displayId).html("File Name: " + _pathToPackage + file_name + "<br /><br />" + evt.target.result);
-                    };
-                    reader.readAsText(file);
-                }, 
-                fail
-            );
-        }, 
-        fail
-    );
+function openFileFromDefaultLocation(file_name, displayId) {
+    file_name = _pathToPackage + file_name;  
+    // alert("default path added: " + file_name);
+    getFile(file_name, displayId);
 }
 
-function getFile2(file_name) {
-    // alert(file_name);
+function getFile(file_name, displayId) {
+    // alert("getFile(" + file_name + "," + displayId + ")");
     _fileSystemRoot.getFile(
         file_name, 
         null, 
@@ -82,8 +66,8 @@ function getFile2(file_name) {
                 function (file) {
                     var reader = new FileReader();
                     reader.onloadend = function(evt) {
-                        console.log("Read as text:" + evt.target.result);
-                        alert(evt.target.result);
+                        console.log("Read as text");
+                        $(displayId).html("File Name: " + file_name + "<hr /><p>" + evt.target.result + "</p>");
                     };
                     reader.readAsText(file);
                 }, 
@@ -94,75 +78,62 @@ function getFile2(file_name) {
     );
 }
 
-// Get a list of all the entries in the directory
-function showdirectory(displayId) {
-    // Get a directory reader
 
-    _fileSystemRoot.getDirectory(
-        _pathToPackage, 
-        {create: false, exclusive: false}, 
-        function (dirEntry) {
-            // Get a directory reader
-            var directoryReader = dirEntry.createReader();
-            // alert(_pathToPackage);
-
-            // Get a list of all the entries in the directory
-            directoryReader.readEntries(function (){
-                directoryReader.readEntries(
-                    function (entries) {
-                        $(displayId).html("<em>" + _pathToPackage + " Contents:</em><br />");
-                        for (var i=0; i<entries.length; i++) {
-                            console.log(entries[i].name);
-                            if (entries[i].isDirectory) {
-                                $(displayId).append(entries[i].name + '<br />');
-                            }
-                            else if (entries[i].isFile) {
-                                var fn = "'" + entries[i].name + "'";
-                                $(displayId).append('<a onclick="getFile2(' + fn + ')">' + fn + '</a><br />');
-                            }    
-                        }
-                    },
-                    function (error) {
-                        alert("Failed to list directory contents: " + error.code);
-                    }
-                );
-            },fail);
-        },
-        fail
-    );           
-    
-
+function showdirectory(displayId, fileDisplayId){
+    openDirectory("", displayId, fileDisplayId);
 }
 
-// window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, fail);
+function openDirectory(path, displayId, fileDisplayId) {
+    _fileSystemRoot.getDirectory(path, {create: false, exclusive: false}, function (dirEntry) {
+        var directoryReader = dirEntry.createReader();
+        var onclickfunction;
+        var patharray = path.split("/");
+        var target = "";
 
-// function onFileSystemSuccess(fileSystem) {
+// 
+// Calculate and display parent path
+//    
+        for (var i = 0; i < patharray.length - 2; i++) {
+            target += patharray[i] + "/";
+        };
+        
+        $(displayId).html("<em>Folder: " + path + "</em><br /><hr>");
 
-// var tmpPath = _pathToPackage;
+        if(path != ""){
+            onclickfunction = "openDirectory('" + target + "','" + displayId + "','" + fileDisplayId + "')";
+            $(displayId).append('<a id="parent_path">../  (parent folder)</a><br /><br />');
+            $("#parent_path").attr("onclick",onclickfunction);
+        }
 
-// fileSystem.root.getDirectory(tmpPath, {create: false, exclusive: false}, getDirSuccess, fail);           
-// }
+
+//
+// Display folder items
+// 
+        directoryReader.readEntries(function (entries) {
+            for (var i=0; i<entries.length; i++) {
+                console.log(entries[i].name);
+                if (entries[i].isDirectory) {
+                    target = path + entries[i].name + '/';
+                    onclickfunction = "openDirectory('" + target + "','" + displayId + "','" + fileDisplayId + "')";
+                     $(displayId).append('<a id="menu-folder-item-' + i + '">' + entries[i].name + '/</a><br /><br />');
+                    $("#menu-folder-item-"+i).attr("onclick",onclickfunction);
+                }
+                else if (entries[i].isFile) {
+                    var filename = entries[i].name;
+                    onclickfunction = "getFile('" + path + filename + "','" + fileDisplayId + "')";
+                    // alert(onclickfunction);
+                    $(displayId).append('<a id="menu-file-item-' + i + '" class="menu-item-file">' + filename + '</a><br /><br />');
+                    $("#menu-file-item-"+i).attr("onclick",onclickfunction);
+            
+                }    
+            }
+        },fail);
+    }, fail);  
+}
 
 
-// function getDirSuccess(dirEntry) {
 
-// // Get a directory reader
-// var directoryReader = dirEntry.createReader();
 
-// // Get a list of all the entries in the directory
-// directoryReader.readEntries(function (entries) {
-//                         $(displayId).html("<em>" + _pathToPackage + " Contents:</em><br />");
-//                         for (var i=0; i<entries.length; i++) {
-//                             console.log(entries[i].name);
-//                             if (entries[i].isDirectory) {
-//                                 $(displayId).append(entries[i].name + '<br />');
-//                             }
-//                             else if (entries[i].isFile) {
-//                                 var fn = "'" + entries[i].name + "'";
-//                                 var displayId = "#file_directory";
-//                                 $(displayId).append('<a onclick="getFile2(' + fn + ')">' + fn + '</a><br />');
-//                             }    
-//                         }
-//                     },fail);
-// }
+
+
 
